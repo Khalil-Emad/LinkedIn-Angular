@@ -79,7 +79,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-5 middle">
+		<div class="col-5  middle">
 			<div class="card">
 				<div class="card-body">
 					<div class="post gap-3">
@@ -210,11 +210,12 @@
 			</div><br>
 
 			<div *ngIf="arr;else noPosts">
-				<div class="card" *ngFor="let post of arr">
+				<div class="card cardPost pb-2 " *ngFor="let post of arr">
 					<div class="card-body">
 						<h5 class="card-title">
-							<div class="d-flex gap-3">
-								<div>
+							<div class="d-flex gap-3 justify-content-between">
+                <div class="d-flex justify-content-between ">
+								<div class="mx-2">
 									<img src={{post.img}}>
 								</div>
 								<div>
@@ -223,6 +224,7 @@
 									<h6 style="color: gray;">{{post.title}}</h6>
 									<h6 style="color: gray;">{{post.time}}</h6>
 								</div>
+              </div>
 								<!-- <button type="button" class="btn btn-primary" (click)="openModal(editPostModal, post)">Edit</button> -->
 								<div class="dropdown">
 									<a class="btn  dropdown-toggle" href="#" role="button"
@@ -233,7 +235,7 @@
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 										<!-- <li><a (click)="updatePost(post)" class="dropdown-item" href="#">update</a></li> -->
 
-										<li><a (click)="deletePost(post.id)" class="dropdown-item" >Delete</a>
+										<li><a (click)="deletePost(post.idi)" class="dropdown-item" >Delete</a>
 										</li>
                     <li> <a (click)="openModal(editPostModal, post)"class="dropdown-item" >Edit</a></li>
 									</ul>
@@ -245,14 +247,19 @@
 					<p class="card-text p-3">
 						<a href=""><i class="far fa-thumbs-up" style="color: blue;"></i></a>
 						<a href=""><i class="bi bi-heart" style="color: red;"></i></a>
-						<a href=""><i class="far fa-lightbulb" style="color: yellow;"></i></a><a href="#">{{post.like}} Likes</a><i
+						<a href=""><i class="far fa-lightbulb" style="color: yellow;"></i></a><a href="#">{{like}}likes</a><i
 							class="bi bi-dot"></i><a href="#" >{{post.comments}} {{'post.comment'|translate}}</a>
 					</p>
-					<div class="d-flex justify-content-between" style="width: 100%;">
-						<button type="button" class="btn btn-outline-light text-dark" (click)="onLike(post.idi)">
+					<!-- <div class="d-flex justify-content-between" style="width: 100%;">
+						<button type="button" class="btn btn-outline-light text-dark">
 							<div class="post gap-3"> <i class="far fa-thumbs-up"
-									style="font-size: 1.5em;color:gray;" ></i><span style="font-size: 17px;">{{'like'|translate}}</span>
-							</div>
+									style="font-size: 1.5em;color:gray;"></i><span style="font-size: 17px;">{{'post.like'|translate}}</span>
+							</div> -->
+              <div class="d-flex justify-content-between" style="width: 100%;">
+                <button type="button" class="btn btn-outline-light text-dark" (click)="onLike(post.idi)">
+                  <div class="post gap-3"> <i class="far fa-thumbs-up"
+                      style="font-size: 1.5em;color:gray;" ></i><span style="font-size: 17px;" id="likeID">{{like==0?'like':'unlike'}}</span>
+                  </div>
 						</button>
 						<button type="button" class="btn btn-outline-light text-dark">
 							<div class="post gap-3"><i class="far fa-comment"
@@ -270,15 +277,32 @@
 									style="font-size: 1em;padding-top: 5%;">{{'post.send'|translate}}</span></div>
 						</button>
 					</div>
-          <div *ngFor="let com of comments, let i=index" >
-          <div class="d-flex justify-content-between py-2" *ngIf="post.idi==com.IDD">
+          <div *ngFor="let com of comments, let i=index" class="boxxx" >
+          <div class="d-flex justify-content-between py-2 box2" *ngIf="post.idi==com.IDD">
             <div class="second py-2 px-2">
-                <div class="d-flex justify-content-between ">
-                    <div style="width: 15%;"><img class=" mx-auto d-block" src={{com.img}}>
+              <div class="d-flex justify-content-between" >
+                <div class="d-flex justify-content-between boxx">
+                    <div style="width: 10%;"><img class=" mx-auto d-block imgcom" src={{com.img}}>
                     </div>
-                    <span>{{com.Name}}  </span>
+                    <span class="commentname">{{com.Name}}  </span>
                   </div>
+                  <div class="dropdown2">
+                    <a class="btn  dropdown-toggle" href="#" role="button"
+                      id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+
+                      <li> <a (click)="deleteCommentt(com.idd,com.IDD)" class="dropdown-item" >delete</a></li>
+                    </ul>
+                  </div>
+                </div>
                   <span class="text1">{{com.body}} </span>
+
+
+                  <!-- <button (click)="deleteCommentt(com.idd,com.IDD)">delete</button> -->
             </div>
         </div>
       </div>

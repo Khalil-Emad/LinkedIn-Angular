@@ -28,7 +28,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from './_services/localization.service';
 import { SearchComponent } from './layout/search/search.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MyjopsComponent } from './MyjopsPage/myjops/myjops.component';
 import { JopsComponent } from './MainPageJpos/jops/jops.component';
 import { InterViewPropComponent } from './InterViewPage/inter-view-prop/inter-view-prop.component';
@@ -52,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SalaryComponent } from './salary/salary.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export function httpLoader(http:HttpClient){
   return new TranslateHttpLoader(http,'assets/i18n/','.json')
 }
@@ -106,6 +106,7 @@ export function httpLoader(http:HttpClient){
     AppRoutingModule,
     HttpClientModule,
     // NgbModal,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ReactiveFormsModule,
